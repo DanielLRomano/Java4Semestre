@@ -4,48 +4,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapExemplo {
-    private Map<Integer, String> nomes;
+    private Map<String,Integer> nomeIdade;
 
-    // Construtor inicializando o HashMap
     public MapExemplo() {
-        nomes = new HashMap<>();
+        nomeIdade = new HashMap<>();
     }
 
-    // Método para adicionar um nome ao Map, com um identificador (ID)
-    public void adicionarNome(int id, String nome) {
-        if (nomes.containsKey(id)) {
-            System.out.println("ID " + id + " já existe com o nome: " + nomes.get(id));
-        } else {
-            nomes.put(id, nome);
-            System.out.println("Nome adicionado: " + nome + " com ID: " + id);
+    public void adicionarNomeIdade(String nome, int idade){
+        nomeIdade.put(nome,idade);
+    }
+    //listar
+    public void listarNomesIdades(){
+        for (String nome : nomeIdade.keySet()) {
+            int value = nomeIdade.get(nome);
+            System.out.println(nome + " " +value);
         }
     }
-
-    // Método para listar todos os nomes no Map
-    public void listarNomes() {
-        for (Map.Entry<Integer, String> entry : nomes.entrySet()) {
-            System.out.println("ID: " + entry.getKey() + " - Nome: " + entry.getValue());
-        }
+    //remove
+    public void deletarNomeIdade(String key){
+        nomeIdade.remove(key);
     }
 
-    // Método para deletar um nome pelo ID no Map
-    public void deletarNome(int id) {
-        if (nomes.containsKey(id)) {
-            nomes.remove(id);
-            System.out.println("Nome com ID " + id + " removido com sucesso.");
-        } else {
-            System.out.println("ID " + id + " não encontrado.");
-        }
-    }
-
-    // Método para modificar um nome pelo ID
-    public void modificarNome(int id, String novoNome) {
-        if (nomes.containsKey(id)) {
-            String nomeAnterior = nomes.get(id);
-            nomes.put(id, novoNome);
-            System.out.println("Nome com ID " + id + " alterado de " + nomeAnterior + " para " + novoNome);
-        } else {
-            System.out.println("ID " + id + " não encontrado.");
-        }
+    //update
+    public void update(String key, int value){
+        nomeIdade.replace(key, value);
     }
 }

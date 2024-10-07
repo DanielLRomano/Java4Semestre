@@ -2,20 +2,28 @@ package com.example;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StreamExemplo {
     List<String> words = Arrays.asList(
-            "banana", "abacaxi", "laranja", "ameixa", "uva", "amora");
+            "banana", 
+            "abacaxi", 
+            "laranja", 
+            "ameixa", 
+            "uva", 
+            "amora");
 
-    // crei uma nova list resultado
-    // filtee palavra com letra a 
-    // to upercase
-    // crie metodo
-    public void imprimirPalavrasFiltradas() {
-        words.stream()
+    // Crie uma nova List Resultado,
+    // filtre as words que comecem com a letra "a"
+    // to upperCase
+    // crie um método
+    public void resultadoStream() {
+        List<String> resultado = words.stream()
                 .filter(word -> word.startsWith("a"))
                 .map(String::toUpperCase)
-                .sorted()
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
+        //resultado
+        System.out.println(resultado);
     }
+
 }

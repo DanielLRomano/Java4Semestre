@@ -9,26 +9,27 @@ public class ListExemplo {
     public ListExemplo() {
         nomes = new ArrayList<>();
     }
-
-    public void adicionarNome(String nome) {
+    //add
+    public void adiconarNome(String nome){
         nomes.add(nome);
         System.out.println(nomes.indexOf(nome));
-
     }
-
-    public void listarNomes() {
+    //list
+    public void listarNomes(){
         for (String nome : nomes) {
             System.out.println(nome);
         }
     }
-
-    public void deletarNome(String nome) {
+    //remove
+    public void deleteNome(String nome){
         nomes.remove(nome);
-        System.out.println("Nome removido com sucesso");
+        System.out.println("Nome Removido com sucesso");
     }
+    //update
     public void modificarNomeIndex(int index, String nome){
         String nomeAnterior = nomes.get(index);
-        nomes.set( index, nome);
-        System.out.println("Nome da posição " +index + nomeAnterior  + ", alterado para " + nome);
+        nomes.set(index,nome);
+        System.out.println(
+            "Nome da posição "+index+", "+nomeAnterior+", alterado para "+nome);
     }
 }

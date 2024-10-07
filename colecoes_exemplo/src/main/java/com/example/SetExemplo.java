@@ -6,45 +6,31 @@ import java.util.Set;
 public class SetExemplo {
     private Set<String> nomes;
 
-    // Construtor inicializando o HashSet
     public SetExemplo() {
         nomes = new HashSet<>();
     }
 
-    // Método para adicionar um nome ao set
-    public void adicionarNome(String nome) {
-        boolean adicionado = nomes.add(nome); // Tenta adicionar o nome
-        if (adicionado) {
-            System.out.println("Nome adicionado com sucesso: " + nome);
-        } else {
-            System.out.println("O nome já existe no conjunto: " + nome);
-        }
+    //add
+    public void adiconarNome(String nome){
+        nomes.add(nome);
+        System.out.println(nomes.hashCode());
     }
-
-    // Método para listar todos os nomes no set
-    public void listarNomes() {
+    //list
+    public void listarNomes(){
         for (String nome : nomes) {
             System.out.println(nome);
         }
     }
-
-    // Método para deletar um nome do set
-    public void deletarNome(String nome) {
-        if (nomes.remove(nome)) {
-            System.out.println("Nome removido com sucesso: " + nome);
-        } else {
-            System.out.println("Nome não encontrado: " + nome);
-        }
+    //remove
+    public void deleteNome(String nome){
+        nomes.remove(nome);
+        System.out.println("Nome Removido com sucesso");
     }
-
-    // Método para modificar um nome no set (não é possível alterar diretamente via índice)
-    // A lógica é remover o nome antigo e adicionar o novo
-    public void modificarNome(String nomeAntigo, String nomeNovo) {
-        if (nomes.remove(nomeAntigo)) {
-            nomes.add(nomeNovo);
-            System.out.println("Nome " + nomeAntigo + " alterado para " + nomeNovo);
-        } else {
-            System.out.println("Nome não encontrado: " + nomeAntigo);
-        }
+    //update
+    public void modificarNomeIndex(String nome,String nomeNovo){
+        nomes.remove(nome);
+        nomes.add(nomeNovo);
+        System.out.println(
+            "Nome alterado de "+nome+" para "+nomeNovo);
     }
 }

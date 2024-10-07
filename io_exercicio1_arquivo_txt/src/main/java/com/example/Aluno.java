@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Aluno {
-    // atributos
+    //atributos
     private String nome;
     private List<Double> notas;
-
+    // construtor
     public Aluno(String nome, double nota1, double nota2, double nota3) {
         this.nome = nome;
         notas = new ArrayList<>();
@@ -15,45 +15,41 @@ public class Aluno {
         notas.add(nota2);
         notas.add(nota3);
     }
-
-    // metodos
-    public double media() {
+    //média
+    public double media(){
         double media = 0;
         for (Double nota : notas) {
             media += nota;
         }
-        media /= notas.size();
+        media/=notas.size();// media=media/notas.size()
         return media;
     }
-
-    // maior nota
-    public double maiorNotaAluno() {
+    //maior nota
+    public double maiorNotaAluno(){
         double maiorNota = 0;
         for (Double nota : notas) {
-            if (nota > maiorNota) {
-                maiorNota = nota;
+            if (nota>maiorNota) {
+                maiorNota=nota;
             }
         }
         return maiorNota;
     }
-
-    public double menorNotaAluno() {
+    //menor nota do Aluno
+    public double menorNotaAluno(){
         double menorNota = 10;
         for (Double nota : notas) {
-            if (nota <= menorNota) {
-                menorNota = nota;
+            if (nota<menorNota) {
+                menorNota=nota;
             }
         }
         return menorNota;
     }
-
-    // toString
+    //toString
     @Override
-    public String toString() {
-        return "Nome: " + nome + ", Notas: " + notas.toString();
+    public String toString(){
+        return "Nome: "+nome+", Notas:"+notas.toString();
     }
-
-    // getNome
+    //getNome()
     public String getNome() {
         return nome;
     }
