@@ -60,3 +60,19 @@ O objetivo do projeto é desenvolver um Sistema de Manutenção Preventiva e Cor
 
 ![Diagrama de Classe](img/diagrama_classe.png)
 ![Diagrama de Fluxo](img/diagrama_fluxo.png)
+
+![Teste ApiRest Maquinas - GET](imgTestes/maquinasget.png)
+![Teste ApiRest Maquinas - POST](imgTestes/maquinaspost.png)
+![Teste ApiRest Maquinas - PUT](imgTestes/maquinasput.png)
+![Teste ApiRest Maquinas - DELETE](imgTestes/maquinasdelete.png)
+
+![Teste ApiRest Manutenções - GET](imgTestes/historicoManutencaoget.png)
+![Teste ApiRest Manutenções - POST](imgTestes/historicoManutencaopost.png)
+
+![Teste ApiRest Falhas - GET](imgTestes/falhasget.png)
+![Teste ApiRest Falhas - POST](imgTestes/falhaspost.png)
+
+![Teste ApiRest Tecnicos - GET](imgTestes/tecnicosget.png)
+![Teste ApiRest Tecnicos - POST](imgTestes/tecnicospost.png)
+![Teste ApiRest Tecnicos - DELETE](imgTestes/tecnicosdelete.png)
+
