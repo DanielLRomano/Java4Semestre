@@ -6,44 +6,55 @@ import com.example.models.Manutencao;
 import java.util.List;
 
 public class ManutencaoController {
-    private ManutencaoAPI manutencaoAPI;
+    // Atributo para armazenar a lista de manutenções
+    private List<Manutencao> manutencoes;
 
+    // Construtor que inicializa a lista de manutenções
     public ManutencaoController() {
-        manutencaoAPI = new ManutencaoAPI();
+        // Inicializa a lista de manutenções ao carregar
+        manutencoes = readManutencoes();
     }
 
-    // Criar uma nova manutenção
-    public void createManutencao(Manutencao manutencao) {
-        int status = manutencaoAPI.createManutencao(manutencao);
-        if (status == 201) {
-            System.out.println("Manutenção criada com sucesso.");
-        } else {
-            System.out.println("Erro ao criar manutenção: " + status);
+    // Método para criar uma nova manutenção
+    public Manutencao createManutencao(Manutencao manutencao) {
+        // Chama a API para criar a manutenção e armazena a resposta
+        Manutencao novaManutencao = ManutencaoAPI.createManutencao(manutencao);
+        if (novaManutencao != null) {
+            // Atualiza a lista de manutenções após criar uma nova
+            manutencoes = readManutencoes();
         }
+        return novaManutencao; // Retorna a nova manutenção criada
     }
 
-    // Ler todas as manutenções
+    // Método para ler todas as manutenções
     public List<Manutencao> readManutencoes() {
-        return ManutencaoAPI.getManutencoes();
+        // Chama o método getManutencoes da ManutencaoApi e armazena o resultado
+        manutencoes = ManutencaoAPI.getManutencoes();
+        return manutencoes; // Retorna a lista de manutenções
     }
 
-    // Atualizar uma manutenção
-    public void updateManutencao(Manutencao manutencao) {
-        int status = ManutencaoAPI.updateManutencao(manutencao);
-        if (status == 200) {
-            System.out.println("Manutenção atualizada com sucesso.");
-        } else {
-            System.out.println("Erro ao atualizar manutenção: " + status);
-        }
+    // Método para obter a lista de manutenções
+    public List<Manutencao> getManutencoes() {
+        return manutencoes;
     }
 
-    // Deletar uma manutenção
-    public void deleteManutencao(String id) {
-        int status = ManutencaoAPI.deleteManutencao(id);
-        if (status == 204) {
-            System.out.println("Manutenção deletada com sucesso.");
-        } else {
-            System.out.println("Erro ao deletar manutenção: " + status);
+    // Método para atualizar uma manutenção existente
+    public String updateManutencao(Manutencao manutencao) {
+        String response = ManutencaoAPI.updateManutencao(manutencao);
+        if (response != null && response.equals("Success")) {
+            // Atualiza a lista de manutenções após a atualização
+            manutencoes = readManutencoes();
         }
+        return response; // Retorna a resposta da API
+    }
+
+    // Método para deletar uma manutenção pelo ID
+    public String deleteManutencao(String id) {
+        String response = ManutencaoAPI.deleteManutencao(id);
+        if (response != null && response.equals("Success")) {
+            // Atualiza a lista de manutenções após a exclusão
+            manutencoes = readManutencoes();
+        }
+        return response; // Retorna a resposta da API
     }
 }

@@ -1,8 +1,6 @@
 package com.example.view;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
+import javax.swing.*;
 import java.awt.*;
 
 public class SistemaManutencaoGUI extends JFrame {
@@ -13,14 +11,13 @@ public class SistemaManutencaoGUI extends JFrame {
     private JPanel painelTecnicos;
 
     public SistemaManutencaoGUI() {
-        // configurações iniciais do frame
-        super("Sistema de manutenção");
+        super("Sistema de Manutenção");
         this.setSize(800, 600);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
 
-        // inicialização dos paineis
+        // Inicialização dos paineis
         painelMaquinas = new MaquinasPanel();
         painelManutencao = new ManutencaoPanel();
         painelFalhas = new FalhasPanel();
@@ -35,5 +32,4 @@ public class SistemaManutencaoGUI extends JFrame {
 
         this.add(tabbedPane, BorderLayout.CENTER);
     }
-
 }

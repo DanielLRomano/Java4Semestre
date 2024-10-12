@@ -1,49 +1,51 @@
 package com.example.controllers;
 
+import com.example.api.MaquinaAPI;
+import com.example.models.Maquina; // Certifique-se de que o pacote está correto
+import java.util.ArrayList;
 import java.util.List;
 
-import com.example.api.MaquinaAPI;
-import com.example.models.Maquina;
-
 public class MaquinaController {
-    private MaquinaAPI maquinaAPI;
+    private List<Maquina> maquinas;
 
     public MaquinaController() {
-        maquinaAPI = new MaquinaAPI();
+        maquinas = new ArrayList<>();
     }
 
-    // Criar uma nova máquina
-    public void createMaquina(Maquina maquina) {
-        int status = maquinaAPI.createMaquina(maquina);
-        if (status == 201) { // HTTP 201 Created
-            System.out.println("Máquina criada com sucesso.");
-        } else {
-            System.out.println("Erro ao criar máquina: " + status);
+    // Método para criar uma nova máquina
+    public Maquina createMaquina(Maquina maquina) {
+        // Chama a API e espera um objeto Maquina em resposta
+        Maquina novaMaquina = MaquinaAPI.createMaquina(maquina);
+        if (novaMaquina != null) {
+            // Atualiza a lista de máquinas após criar uma nova
+            readMaquinas();
         }
+        return novaMaquina; // Retorna o objeto Maquina criado
     }
 
-    // Ler todas as máquinas
+    // Método para listar todas as máquinas
     public List<Maquina> readMaquinas() {
-        return MaquinaAPI.getMaquinas();
+        maquinas = MaquinaAPI.getMaquinas();
+        return maquinas;
     }
 
-    // Atualizar uma máquina
-    public void updateMaquina(Maquina maquina) {
-        int status = MaquinaAPI.updateMaquina(maquina);
-        if (status == 200) { // HTTP 200 OK
-            System.out.println("Máquina atualizada com sucesso.");
-        } else {
-            System.out.println("Erro ao atualizar máquina: " + status);
+    // Método para atualizar uma máquina
+    public String updateMaquina(Maquina maquina) {
+        String response = MaquinaAPI.updateMaquina(maquina);
+        if (response != null) {
+            // Opcionalmente, atualiza a lista de máquinas após a atualização
+            readMaquinas();
         }
+        return response; // Retorna resposta da API
     }
 
-    // Deletar uma máquina
-    public void deleteMaquina(String id) {
-        int status = MaquinaAPI.deleteMaquina(id);
-        if (status == 204) { // HTTP 204 No Content
-            System.out.println("Máquina deletada com sucesso.");
-        } else {
-            System.out.println("Erro ao deletar máquina: " + status);
+    // Método para deletar uma máquina
+    public String deleteMaquina(String id) {
+        String response = MaquinaAPI.deleteMaquina(id);
+        if (response != null) {
+            // Opcionalmente, atualiza a lista de máquinas após a exclusão
+            readMaquinas();
         }
+        return response; // Retorna resposta da API
     }
 }

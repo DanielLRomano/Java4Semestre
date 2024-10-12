@@ -3,47 +3,58 @@ package com.example.controllers;
 import com.example.api.TecnicoAPI;
 import com.example.models.Tecnico;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TecnicoController {
-    private TecnicoAPI tecnicoAPI;
+    private List<Tecnico> tecnicos;
 
     public TecnicoController() {
-        tecnicoAPI = new TecnicoAPI();
+        tecnicos = new ArrayList<>();
     }
 
-    // Criar um novo técnico
-    public void createTecnico(Tecnico tecnico) {
-        int status = tecnicoAPI.createTecnico(tecnico);
-        if (status == 201) {
-            System.out.println("Técnico criado com sucesso.");
-        } else {
-            System.out.println("Erro ao criar técnico: " + status);
+    // Método para criar um novo técnico
+ // Método para criar um novo técnico
+public Tecnico createTecnico(Tecnico tecnico) {
+    Tecnico novoTecnico = TecnicoAPI.createTecnico(tecnico);
+    if (novoTecnico != null) {
+        // Atualiza a lista de técnicos após criar um novo
+        readTecnicos();
+    }
+    return novoTecnico; // Retorna o objeto Técnico criado
+}
+
+
+ // Método para obter a lista de técnicos e armazená-la localmente
+public List<Tecnico> readTecnicos() {
+    // Obtém a lista de técnicos do API
+    List<Tecnico> tecnicos = TecnicoAPI.getTecnicos();
+    return tecnicos; // Retorna a lista de técnicos
+}
+
+
+    // Método para atualizar um técnico existente
+    public String updateTecnico(Tecnico tecnico) {
+        String response = TecnicoAPI.updateTecnico(tecnico);
+        if (response != null) {
+            // Atualiza a lista de técnicos após a modificação
+            readTecnicos();
         }
+        return response;
     }
 
-    // Ler todos os técnicos
-    public List<Tecnico> readTecnicos() {
-        return TecnicoAPI.getTecnicos();
-    }
-
-    // Atualizar um técnico
-    public void updateTecnico(Tecnico tecnico) {
-        int status = TecnicoAPI.updateTecnico(tecnico);
-        if (status == 200) {
-            System.out.println("Técnico atualizado com sucesso.");
-        } else {
-            System.out.println("Erro ao atualizar técnico: " + status);
+    // Método para deletar um técnico pelo ID
+    public String deleteTecnico(String id) {
+        String response = TecnicoAPI.deleteTecnico(id);
+        if (response != null) {
+            // Atualiza a lista de técnicos após a exclusão
+            readTecnicos();
         }
+        return response;
     }
 
-    // Deletar um técnico
-    public void deleteTecnico(String id) {
-        int status = TecnicoAPI.deleteTecnico(id);
-        if (status == 204) {
-            System.out.println("Técnico deletado com sucesso.");
-        } else {
-            System.out.println("Erro ao deletar técnico: " + status);
-        }
+    // Método para obter a lista de técnicos (pode ser usada para outros propósitos)
+    public List<Tecnico> getTecnicos() {
+        return tecnicos;
     }
 }
